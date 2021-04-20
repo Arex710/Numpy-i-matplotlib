@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.integrate as integrate
 import Z15
+from scipy.integrate import simps
 
 # 6 Ćwiczenia
 #6.3
@@ -99,9 +101,29 @@ plt.plot(x, y1(x), color='red', dashes=[2, 2])
 
 #6.15
 plt.plot(x, Z15.y2(x), '+g')
-plt.show()
+#plt.show()
 
 #6.17
-#print("\n#Zadanie 17\n")
-#plt.plot(x, 3 * y1(x) + arr, '*b')
+plt.plot(x, 3 * y1(x) + Z15.y2(x), '*b')
 #plt.show()
+
+#6.18
+matrix1 = np.array([[10, 5, 1, 7],
+                   [10, 9, 5, 5],
+                   [1, 6, 7, 3],
+                   [10, 0, 1, 5]])
+matrix2 = np.array([[34],
+                    [44],
+                    [25],
+                    [27]])
+x = np.zeros(4)
+print(np.linalg.solve(matrix1,matrix2))
+x = np.linalg.solve(matrix1,matrix2)
+for i in range (0, np.size(x)):
+    print(chr(int(round(x[i][0]))+64))
+
+#6.19
+x = np.linspace(0, 2*np.pi, 1000000)
+y3 = lambda x: np.sin(x)
+calka, blad = integrate.quad(y3, 0, 2*np.pi)
+print("Wynik calkowania:", calka)
